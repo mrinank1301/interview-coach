@@ -1,0 +1,10 @@
+streamlit
+PyPDF2
+python-docx
+azure-cognitiveservices-speech
+textblob
+scikit-learn
+pandas
+openai==0.28
+nltk
+textblob
