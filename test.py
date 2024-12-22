@@ -11,22 +11,44 @@ import datetime
 from sklearn.feature_extraction.text import CountVectorizer
 import pandas as pd
 from textblob import TextBlob
-import subprocess
-import sys
-
-# Run this at the start of your app
-def setup_textblob():
-    try:
-        import initialize
-        initialize.download_nltk_data()
-    except Exception as e:
-        st.error(f"Error setting up TextBlob: {e}")
-
-# Call setup at app startup
-setup_textblob()
-# Add the custom nltk_data path to the NLTK search paths
+import nltk
+from textblob import TextBlob
 
 st.set_page_config(page_title="Azure OpenAI Interview Generator", layout="wide")
+@st.cache_resource
+def download_nltk_data():
+    try:
+        # Download all required NLTK data
+        nltk.download('punkt')
+        nltk.download('punkt_tab')  # Added this specifically
+        nltk.download('averaged_perceptron_tagger')
+        nltk.download('brown')
+        nltk.download('wordnet')
+        
+        # Verify the downloads
+        import nltk.data
+        try:
+            nltk.data.find('tokenizers/punkt')
+            nltk.data.find('tokenizers/punkt_tab')
+            return True
+        except LookupError:
+            return False
+            
+    except Exception as e:
+        st.error(f"Error downloading NLTK data: {e}")
+        return False
+
+# Initialize NLTK data at startup
+if not download_nltk_data():
+    st.error("Failed to download required NLTK data. Please try refreshing the page.")
+    st.stop()
+
+# Your TextBlob code here
+def analyze_text(text):
+    blob = TextBlob(text)
+    return blob  
+
+
 # from textblob.download_corpora import download_all
 
 st.title("jobSpring AI Interview Generator")
