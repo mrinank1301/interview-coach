@@ -11,12 +11,13 @@ import datetime
 from sklearn.feature_extraction.text import CountVectorizer
 import pandas as pd
 from textblob import TextBlob
-import nltk
-from textblob import TextBlob
+
+
 
 st.set_page_config(page_title="Azure OpenAI Interview Generator", layout="wide")
 @st.cache_resource
 def download_nltk_data():
+    import nltk
     try:
         # Download all required NLTK data
         nltk.download('punkt')
