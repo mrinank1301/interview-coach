@@ -11,19 +11,19 @@ import datetime
 from sklearn.feature_extraction.text import CountVectorizer
 import pandas as pd
 import nltk
-
+from download import download_corpora
 # Add the custom nltk_data path to the NLTK search paths
 
 st.set_page_config(page_title="Azure OpenAI Interview Generator", layout="wide")
-from textblob.download_corpora import download_all
+# from textblob.download_corpora import download_all
 
-# Check if corpora are available, and download if not
-if not os.path.exists('./nltk_data/corpora'):
-    import nltk
-    nltk.data.path.append('./nltk_data')  # Ensure path is set
-    download_all()
+# # Check if corpora are available, and download if not
+# if not os.path.exists('./nltk_data/corpora'):
+#     import nltk
+#     nltk.data.path.append('./nltk_data')  # Ensure path is set
+#     download_all()
 # Streamlit Interface
-
+download_corpora()
 st.title("jobSpring AI Interview Generator")
 st.markdown(
     """<style>
