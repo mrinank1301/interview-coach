@@ -14,16 +14,9 @@ from textblob.download_corpora import download_all
 import nltk
 
 # Add the custom nltk_data path to the NLTK search paths
-nltk.data.path.append('./nltk_data')
-st.set_page_config(page_title="Azure OpenAI Interview Generator", layout="wide")
-# Download corpora if not already downloaded
-corpora_path = os.path.expanduser('~/.textblob/nltk_data')
-if not os.path.exists(corpora_path):
-    import streamlit as st
-    st.info("Downloading TextBlob corpora. Please wait...")
-    download_all()
-    st.success("TextBlob corpora downloaded successfully!")
 
+st.set_page_config(page_title="Azure OpenAI Interview Generator", layout="wide")
+nltk.data.path.append('./nltk_data')
 # Streamlit Interface
 
 st.title("jobSpring AI Interview Generator")
